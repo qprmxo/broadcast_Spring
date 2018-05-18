@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlmap.MemberMapper">
+	
+	<select id="getInfo" parameterType="string" resultType="member">
+		select * from member where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="member">
+		insert into member values(seq_m_num.nextval,#{id},#{pwd},#{name})
+	</insert>
+	
+	<update id="update" parameterType="member">
+		update member set pwd=#{pwd}, name=#{name} where id=#{id}
+	</update>
+	
+</mapper>
