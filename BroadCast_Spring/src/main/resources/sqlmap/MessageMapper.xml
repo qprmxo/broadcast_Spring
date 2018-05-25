@@ -5,24 +5,35 @@
 <mapper namespace="sqlmap.MessageMapper">
 	
 	<select id="getRecvList" parameterType="hashmap" resultType="message">
-		select * from (select m.*,rownum rnum from message m where m.rid=#{rid} and m.deletecheck=0)
+		select * from (select m.*,rownum rnum from message m where m.rid=#{rid} and m.r_delete=0)
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
-	
-	<select id="getSendList" parameterType="string" resultType="message">
-		select * from message where sid=#{sid}
+	<select id="getSendList" parameterType="hashmap" resultType="message">
+		select * from (select m.*,rownum rnum from message m where m.sid=#{sid} and m.s_delete=0)
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 	</select>
-	
 	<select id="getRecvCount" parameterType="string" resultType="int">
-		select NVL(count(#{rid}),0) cnt from message where deletecheck=0
+		select NVL(count(#{rid}),0) cnt from message where r_delete=0
 	</select>
+	<select id="getSendCount" parameterType="string" resultType="int">
+		select NVL(count(#{sid}),0) cnt from message where s_delete=0
+	</select>
+	<select id="getInfo" parameterType="int" resultType="message">
+		select * from message where msg_num=#{msg_num}
+	</select>
+	
 	
 	<insert id="msgSend" parameterType="message">
-		insert into message values(seq_msg_num.nextval,#{rid},#{sid},#{content},0,sysdate)
+		insert into message values(seq_msg_num.nextval,#{rid},#{sid},#{content},0,0,0,sysdate)
 	</insert>
-	
-	<update id="msgDelete" parameterType="int">
-		update message set deletecheck=1 where msg_num=#{msg_num}
+	<update id="msgRecvDelete" parameterType="int">
+		update message set r_delete=1 where msg_num=#{msg_num}
+	</update>
+	<update id="msgSendDelete" parameterType="int">
+		update message set s_delete=1 where msg_num=#{msg_num}
+	</update>
+	<update id="msgReadCheck" parameterType="int">
+		update message set read_check=1 where msg_num=#{msg_num}
 	</update>
 	
 </mapper>

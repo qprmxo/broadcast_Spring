@@ -18,6 +18,13 @@
 		<put-attribute name="footer" value="/WEB-INF/views/main/footer.jsp"></put-attribute>
 	</definition>
 	
+	<definition name=".personnal" template="/WEB-INF/views/personnal/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/main/header.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/views/personnal/sidebar.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/personnal/home.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/main/footer.jsp"></put-attribute>
+	</definition>
+	
 	<definition name=".main.*.*" extends=".main">
 		<put-attribute name="content" value="/WEB-INF/views/main/{1}/{2}.jsp"></put-attribute>
 	</definition>
@@ -30,6 +37,13 @@
 	</definition>
 	<definition name=".member.*" extends=".member">
 		<put-attribute name="content" value="/WEB-INF/views/member/{1}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name=".personnal.*.*" extends=".personnal">
+		<put-attribute name="content" value="/WEB-INF/views/personnal/{1}/{2}.jsp"></put-attribute>
+	</definition>
+	<definition name=".personnal.*" extends=".personnal">
+		<put-attribute name="content" value="/WEB-INF/views/personnal/{1}.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>

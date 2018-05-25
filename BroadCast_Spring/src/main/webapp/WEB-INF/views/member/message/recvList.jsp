@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<div class="w3-container w3-white w3-padding-32 w3-center">
+<div>
 
 <script type="text/javascript">
 	$(function(){
@@ -14,7 +14,15 @@
 		});
 		
 		$("#btnDelete").on("click",function(){
-			$("#frm").submit();
+			if($("input.chk").is(":checked")){
+				var flag = confirm("選択した項目を削除しますか?");
+				if(flag){
+					$("#frm").submit();
+				}
+			}else{
+				alert("削除する項目を選択してください。");
+				return false;
+			}
 		});
 	});
 </script>
@@ -28,32 +36,42 @@
 	
 	<br><br>
 	
-	<a href="msgSend" onclick="window.open(this.href, '', 'width=400, height=430'); return false;" >
+	<a href="msgSend" onclick="window.open(this.href, '', 'width=500, height=600'); return false;">
 		<button type="button" class="w3-button w3-teal w3-round-large" style="margin-left: 440px;">作成</button>
 	</a>
 	<button type="button" id="btnDelete" class="w3-button w3-teal w3-round-large">削除</button>
 	
 	<br>
 	
-	<form action="msgDelete" method="post" id="frm">
+	<form action="msgRecvDelete" method="post" id="frm">
 	
 	<table border="1" style="margin: auto;">
 		<tr>
 			<th style="width:50px;"><input type="checkbox" id="chkAll"></th>
+			<th style="width:50px;">状態</th>
 			<th style="width:100px;">送った人</th>
 			<th style="width:300px;">内容</th>
 			<th style="width:100px;">日付</th>
 		</tr>
 		<c:if test="${empty list }">
 			<tr>
-				<td colspan="4">メッセージがありません。</td>
+				<td colspan="5">メッセージがありません。</td>
 			</tr>
 		</c:if>
 		<c:forEach var="vo" items="${list }">
 			<tr>
-				<td><input type="checkbox" name="chk" value="${vo.msg_num }"></td>
+				<td><input type="checkbox" name="chk" value="${vo.msg_num }" class="chk"></td>
+				<c:choose>
+					<c:when test="${vo.read_check == 0 }">
+						<td><i class="fa fa-envelope"></i></td>
+					</c:when>
+					<c:otherwise>
+						<td><i class="fa fa-envelope-open-o"></i></td>
+					</c:otherwise>
+				</c:choose>
 				<td>${vo.sid }</td>
-				<td>${vo.content }</td>
+				<td><a href="msgInfo?msg_num=${vo.msg_num }&cmd=read" 
+						onclick="window.open(this.href, '', 'width=500, height=600'); return false;">${vo.content }</a></td>
 				<td>${vo.regdate }</td>
 			</tr>
 		</c:forEach>
@@ -93,6 +111,6 @@
 				<a href="#" class="w3-bar-item w3-button w3-hover-black">次へ</a>
 			</c:otherwise>
 		</c:choose>
-		</div>
+	</div>
 	
 </div>

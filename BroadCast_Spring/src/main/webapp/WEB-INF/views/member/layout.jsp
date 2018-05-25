@@ -28,19 +28,19 @@ a{
 
 <div id="wrap">
 
-	<div id="header" class="w3-main w3-light-grey" style="position: fixed;width: 100%;height:105px;">
+	<div id="header" class="w3-main w3-white" style="position: fixed;width: 100%;height:50px;">
 		<tiles:insertAttribute name="header"/>
 	</div>
 	
-	<div id="content" class="w3-main w3-light-grey" style="padding-top:100px;">
+	<div id="content" class="w3-main w3-light-grey" style="padding-top:50px;">
 		
-		<div id="main" >
+		<div id="main" class="w3-container w3-padding-32 w3-center">
 			<tiles:insertAttribute name="content"/>
 		</div>
 		
 	</div>
 	
-	<div id="footer" class="w3-main w3-light-grey">
+	<div id="footer" class="w3-container w3-padding-32 w3-dark-grey w3-row-padding">
 		<tiles:insertAttribute name="footer"/>
 	</div>
 

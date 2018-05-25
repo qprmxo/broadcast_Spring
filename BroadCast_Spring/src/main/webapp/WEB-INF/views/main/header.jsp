@@ -4,11 +4,11 @@
 
 <!-- Header -->
 
-<a href="#"><img src="/w3images/avatar_g2.jpg" style="width: 65px;"
-	class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
-<span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey"
-	onclick="w3_open()"><i class="fa fa-bars"></i></span>
-<div class="w3-container w3-light-grey w3-right w3-padding-32" style="margin-right:50px;">
+<div class="w3-left w3-padding-8" style="margin-left:40px;">
+	<a href="main"><h5>SpringKadai_BroadCast</h5></a>
+</div>
+	
+<div class="w3-right" style="margin-top:5px;margin-right:150px;">
 
 	<c:choose>
 		<c:when test="${sessionScope.id == null }">
@@ -17,13 +17,14 @@
 		<c:otherwise>
 			<div class="w3-dropdown-hover">
 				<button class="w3-button w3-black">${sessionScope.id }</button>
-				<div class="w3-dropdown-content w3-bar-block w3-border">
-					<a href="recvList" class="w3-bar-item w3-button">メッセージ</a> 
-					<a href="#" class="w3-bar-item w3-button">アイテム</a> 
-					<a href="#" class="w3-bar-item w3-button">内訳</a>
-					<a href="#" class="w3-bar-item w3-button">放送設定</a>
-					<a href="memberUpdate" class="w3-bar-item w3-button">会員情報修正</a>
-					<a href="logout" class="w3-bar-item w3-button">ログアウト</a>
+				<div class="w3-dropdown-content w3-bar-block w3-border">	
+					<a href="${sessionScope.id }" class="w3-bar-item w3-button"><i class="fa fa-home">&emsp;</i>ホーム</a> 	
+					<a href="recvList" class="w3-bar-item w3-button"><i class="fa fa-envelope-o">&emsp;</i>メッセージ</a> 
+					<a href="#" class="w3-bar-item w3-button"><i class="fa fa-flask">&emsp;</i>アイテム</a> 
+					<a href="#" class="w3-bar-item w3-button"><i class="fa fa-bar-chart">&emsp;</i>内訳</a>
+					<a href="#" class="w3-bar-item w3-button"><i class="fa fa-video-camera">&emsp;</i>放送設定</a>
+					<a href="memberUpdate" class="w3-bar-item w3-button"><i class="fa fa-drivers-license-o">&emsp;</i>会員情報修正</a>
+					<a href="logout" class="w3-bar-item w3-button"><i class="fa fa-bed">&emsp;</i>ログアウト</a>
 				</div>
 			</div>
 		</c:otherwise>

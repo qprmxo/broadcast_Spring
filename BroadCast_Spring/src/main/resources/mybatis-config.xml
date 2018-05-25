@@ -8,9 +8,11 @@
 	<typeAliases>
 		<typeAlias type="com.broadcast.myapp.vo.MemberVo" alias="member" />
 		<typeAlias type="com.broadcast.myapp.vo.MessageVo" alias="message"/>
+		<typeAlias type="com.broadcast.myapp.vo.ProfileVo" alias="profile"/>
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="sqlmap/ProfileMapper.xml" />
 		<mapper resource="sqlmap/MemberMapper.xml" />
 		<mapper resource="sqlmap/MessageMapper.xml"/>
 	</mappers>

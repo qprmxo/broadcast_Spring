@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="w3-container w3-white w3-padding-32 w3-center">
+<div>
 
 <script type="text/javascript">
 
@@ -31,10 +31,10 @@
 	<form action="login" method="post" id="frm">
 		<table style="margin:auto;">	
 			<tr>
-				<th>ID</th><td><input type="text" name="id" id="id"></td>
+				<th>ID</th><td><input type="text" name="id" id="id" placeholder="ID入力"></td>
 			</tr>
 			<tr>
-				<th>Password</th><td><input type="password" name="pwd" id="pwd"></td>
+				<th>Password</th><td><input type="password" name="pwd" id="pwd" placeholder="PassWord入力"></td>
 			</tr>
 		</table>
 		

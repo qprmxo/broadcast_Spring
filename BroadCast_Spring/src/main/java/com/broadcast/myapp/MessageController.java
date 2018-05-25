@@ -32,7 +32,7 @@ public class MessageController {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int totalRowCount = messageService.getRecvCount(id);
-		PageUtil pu = new PageUtil(pageNum, 2, 5, totalRowCount);
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
 		
 		map.put("rid", id);
 		map.put("startRow", pu.getStartRow());
@@ -52,8 +52,18 @@ public class MessageController {
 		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		List<MessageVo> list = messageService.getSendList(id);
 		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int totalRowCount = messageService.getSendCount(id);
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		
+		map.put("sid", id);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow", pu.getEndRow());
+		
+		List<MessageVo> list = messageService.getSendList(map);
+		
+		model.addAttribute("pu", pu);
 		model.addAttribute("list", list);
 		
 		return ".member.message.sendList";
@@ -79,11 +89,32 @@ public class MessageController {
 		}
 	}
 	
-	@RequestMapping(value = "/msgDelete", method = RequestMethod.POST)
-	public String msgDelete(int[] chk) {
+	@RequestMapping(value = "/msgRecvDelete", method = RequestMethod.POST)
+	public String msgRecvDelete(int[] chk) {
 		for(int i = 0; i<chk.length; i++) {
-			messageService.msgDelete(chk[i]);
+			messageService.msgRecvDelete(chk[i]);
 		}
-		return "redirect:message";
+		return "redirect:recvList";
+	}
+	
+	@RequestMapping(value = "/msgSendDelete", method = RequestMethod.POST)
+	public String msgSendDelete(int[] chk) {
+		for(int i = 0; i<chk.length; i++) {
+			messageService.msgSendDelete(chk[i]);
+		}
+		return "redirect:sendList";
+	}
+	
+	@RequestMapping(value = "/msgInfo", method = RequestMethod.GET)
+	public String msgInfo(Model model, int msg_num, String cmd) {
+		MessageVo vo = messageService.getInfo(msg_num);
+		
+		if(cmd.equals("read")) {
+			messageService.msgReadCheck(msg_num);
+		}
+		
+		model.addAttribute("vo", vo);
+		
+		return "member/message/msgInfo";
 	}
 }
