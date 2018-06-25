@@ -1,5 +1,7 @@
 package com.broadcast.myapp;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.broadcast.myapp.service.CategoryService;
 import com.broadcast.myapp.service.MemberService;
 import com.broadcast.myapp.service.ProfileService;
+import com.broadcast.myapp.vo.CategoryVo;
 import com.broadcast.myapp.vo.MemberVo;
 import com.broadcast.myapp.vo.ProfileVo;
 
@@ -21,6 +25,7 @@ public class MemberController {
 	
 	@Autowired private MemberService memberService;
 	@Autowired private ProfileService profileService;
+	@Autowired private CategoryService categoryService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -32,11 +37,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String personnal(@PathVariable(value="id") String id, HttpServletRequest req) {
-		req.setAttribute("id", id);
-		ProfileVo vo = profileService.getInfo(id);
-		
-		req.setAttribute("vo", vo);
+	public String personnal(@PathVariable(value="id") String id, Model model) {
+		ProfileVo profile_vo = profileService.getInfo(id);
+		List<CategoryVo> category_list = categoryService.getInfo(id);
+		model.addAttribute("id", id);
+		model.addAttribute("profile_vo", profile_vo);
+		model.addAttribute("category_list", category_list);
 		
 		return ".personnal";
 	}

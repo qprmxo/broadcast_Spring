@@ -23,6 +23,13 @@ public class ProfileVo {
 		this.org_filename = org_filename;
 		this.save_filename = save_filename;
 	}
+	public ProfileVo(String id, String title, String org_filename, String save_filename) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.org_filename = org_filename;
+		this.save_filename = save_filename;
+	}
 	public int getProfile_num() {
 		return profile_num;
 	}

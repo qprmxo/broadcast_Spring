@@ -21,4 +21,8 @@ public class ProfileDao {
 	public ProfileVo getInfo(String id) {
 		return sqlSession.selectOne(NAMESPACE + ".getInfo", id);
 	}
+	
+	public int update(ProfileVo vo) {
+		return sqlSession.update(NAMESPACE + ".update", vo);
+	}
 }

@@ -11,7 +11,7 @@
 	href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="resources/js/jquery-3.3.1.js"></script>
+<script src="<c:url value='/resources/js/jquery-3.3.1.js'/>"></script>
 <style>
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", sans-serif

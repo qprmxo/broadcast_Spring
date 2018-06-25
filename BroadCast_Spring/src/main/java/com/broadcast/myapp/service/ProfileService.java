@@ -19,4 +19,8 @@ public class ProfileService {
 	public ProfileVo getInfo(String id) {
 		return profileDao.getInfo(id);
 	}
+	
+	public int update(ProfileVo vo) {
+		return profileDao.update(vo);
+	}
 }

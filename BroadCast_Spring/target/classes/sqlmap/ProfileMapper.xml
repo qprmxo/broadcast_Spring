@@ -12,4 +12,8 @@
 		select * from profile where id=#{id}
 	</select>
 	
+	<update id="update" parameterType="profile">
+		update profile set title=#{title}, org_filename=#{org_filename}, save_filename=#{save_filename} where id=#{id}
+	</update>
+	
 </mapper>

@@ -12,7 +12,7 @@ create table message(
 	content clob;
 	r_delete number(5),
 	s_delete number(5),
-	readCheck number(3),
+	read_check number(5),
 	regdate date
 )
 
@@ -20,6 +20,12 @@ create table profile(
 	profile_num number not null primary key,
 	id varchar2(10) not null references member(id),
 	title varchar2(20),
-	org_filename varchar2(20),
-	save_filename varchar2(20)
+	org_filename varchar2(100),
+	save_filename varchar2(100)	
+)
+
+create table category(
+	category_num number not null primary key,
+	name varchar2(50),
+	id varchar2(10) not null references member(id)
 )

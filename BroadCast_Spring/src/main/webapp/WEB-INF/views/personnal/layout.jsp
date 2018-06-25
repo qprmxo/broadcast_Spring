@@ -13,7 +13,7 @@
 	href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="resources/js/jquery-3.3.1.js"></script>	
+<script src="<c:url value='/resources/js/jquery-3.3.1.js'/>"></script>	
 <style>
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", sans-serif
@@ -43,13 +43,13 @@ a{
 		<tiles:insertAttribute name="header"/>
 	</div>
 	
-	<div id="content">
+	<div id="content" style="padding-top: 50px;">
 	
-		<div id="sidebar" style="padding-top: 50px;">
+		<div id="sidebar">
 			<tiles:insertAttribute name="sidebar"/>
 		</div>
 		
-		<div id="main" class="w3-main w3-light-grey" style="margin-left: 200px;padding-top: 50px;">
+		<div id="main" class="w3-main w3-light-grey" style="margin-left: 200px;">
 			<tiles:insertAttribute name="content"/>
 		</div>
 		
