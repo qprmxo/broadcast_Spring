@@ -16,13 +16,19 @@ public class CategoryDao {
 	
 	private final String NAMESPACE = "sqlmap.CategoryMapper";
 	
-	public int insert(CategoryVo vo) {
-		return sqlSession.insert(NAMESPACE + ".insert", vo);
+	public int insert(CategoryVo categoryVo) {
+		return sqlSession.insert(NAMESPACE + ".insert", categoryVo);
 	}
 	public int delete(int category_num) {
 		return sqlSession.delete(NAMESPACE + ".delete", category_num);
 	}
-	public List<CategoryVo> getInfo(String id) {
-		return sqlSession.selectList(NAMESPACE + ".getInfo", id);
+	public List<CategoryVo> getList(String id) {
+		return sqlSession.selectList(NAMESPACE + ".getList", id);
+	}
+	public int getNumber(CategoryVo categoryVo) {
+		return sqlSession.selectOne(NAMESPACE + ".getNumber",categoryVo);
+	}
+	public int updateIndex(CategoryVo categoryVo) {
+		return sqlSession.update(NAMESPACE + ".updateIndex", categoryVo);
 	}
 }

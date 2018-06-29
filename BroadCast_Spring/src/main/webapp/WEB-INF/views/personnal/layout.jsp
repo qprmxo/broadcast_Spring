@@ -7,7 +7,6 @@
 <head>
 <title>BroadCast_Spring</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Raleway">
@@ -43,13 +42,13 @@ a{
 		<tiles:insertAttribute name="header"/>
 	</div>
 	
-	<div id="content" style="padding-top: 50px;">
+	<div id="content" style="padding-top: 50px;height:470px;">
 	
 		<div id="sidebar">
 			<tiles:insertAttribute name="sidebar"/>
 		</div>
 		
-		<div id="main" class="w3-main w3-light-grey" style="margin-left: 200px;">
+		<div id="main" class="w3-main w3-light-grey" style="margin-left: 200px;height:420px;overflow: auto;">
 			<tiles:insertAttribute name="content"/>
 		</div>
 		

@@ -34,8 +34,8 @@ public class MessageDao {
 	}
 	
 	
-	public int msgSend(MessageVo vo) {
-		return sqlSession.insert(NAMESPACE + ".msgSend", vo);
+	public int msgSend(MessageVo messageVo) {
+		return sqlSession.insert(NAMESPACE + ".msgSend", messageVo);
 	}
 	public int msgRecvDelete(int msg_num) {
 		return sqlSession.update(NAMESPACE + ".msgRecvDelete", msg_num);

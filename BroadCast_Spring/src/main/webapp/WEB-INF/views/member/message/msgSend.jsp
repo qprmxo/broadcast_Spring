@@ -37,7 +37,7 @@
 				alert("IDを入力してください。");
 				return false;
 			}
-			frm.submit();
+			$("#frm").submit();
 		});
 		
 		$("#btnClose").on("click",function(){

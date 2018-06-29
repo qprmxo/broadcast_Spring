@@ -18,11 +18,11 @@ public class MemberDao {
 		return sqlSession.selectOne(NAMESPACE + ".getInfo", id);
 	}
 	
-	public int insert(MemberVo vo) {
-		return sqlSession.insert(NAMESPACE + ".insert",vo); 
+	public int insert(MemberVo memberVo) {
+		return sqlSession.insert(NAMESPACE + ".insert", memberVo); 
 	}
 	
-	public int update(MemberVo vo) {
-		return sqlSession.update(NAMESPACE + ".update",vo);
+	public int update(MemberVo memberVo) {
+		return sqlSession.update(NAMESPACE + ".update", memberVo);
 	}
 }

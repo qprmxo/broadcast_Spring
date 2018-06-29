@@ -19,7 +19,7 @@
 			$("#frm").submit();
 		});
 			
-		$("#btnReturn").on("click",function(){
+		$("#btnBack").on("click",function(){
 			history.back();
 		});
 	});
@@ -42,7 +42,7 @@
 		
 		<button type="button" id="btnSubmit" class="w3-button w3-teal w3-round-large">ログイン</button>
 		<a href="join"><button type="button" class="w3-button w3-teal w3-round-large">新規登録</button></a>
-		<button type="button" id="btnReturn" class="w3-button w3-teal w3-round-large">戻る</button>
+		<button type="button" id="btnBack" class="w3-button w3-teal w3-round-large">戻る</button>
 	</form>
 
 </div>

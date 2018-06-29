@@ -38,10 +38,10 @@ public class MessageController {
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		
-		List<MessageVo> list = messageService.getRecvList(map);
+		List<MessageVo> messageList = messageService.getRecvList(map);
 		
 		model.addAttribute("pu", pu);
-		model.addAttribute("list", list);
+		model.addAttribute("messageList", messageList);
 		
 		return ".member.message.recvList";
 	}
@@ -61,10 +61,10 @@ public class MessageController {
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		
-		List<MessageVo> list = messageService.getSendList(map);
+		List<MessageVo> messageList = messageService.getSendList(map);
 		
 		model.addAttribute("pu", pu);
-		model.addAttribute("list", list);
+		model.addAttribute("messageList", messageList);
 		
 		return ".member.message.sendList";
 	}
@@ -107,13 +107,13 @@ public class MessageController {
 	
 	@RequestMapping(value = "/msgInfo", method = RequestMethod.GET)
 	public String msgInfo(Model model, int msg_num, String cmd) {
-		MessageVo vo = messageService.getInfo(msg_num);
+		MessageVo messageVo = messageService.getInfo(msg_num);
 		
 		if(cmd.equals("read")) {
 			messageService.msgReadCheck(msg_num);
 		}
 		
-		model.addAttribute("vo", vo);
+		model.addAttribute("messageVo", messageVo);
 		
 		return "member/message/msgInfo";
 	}

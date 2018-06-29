@@ -49,7 +49,7 @@
 			});
 		});
 		
-		$("#btnReturn").on("click",function(){
+		$("#btnBack").on("click",function(){
 			history.back();
 		});
 	});
@@ -85,6 +85,6 @@
 	<br>
 	
 	<button type="button" id="btnSubmit" class="w3-button w3-teal w3-round-large">登録</button>
-	<button type="button" id="btnReturn" class="w3-button w3-teal w3-round-large">戻る</button>
+	<button type="button" id="btnBack" class="w3-button w3-teal w3-round-large">戻る</button>
 	
 </div>

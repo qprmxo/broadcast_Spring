@@ -14,15 +14,15 @@ public class ProfileDao {
 	
 	private final String NAMESPACE = "sqlmap.ProfileMapper";
 	
-	public int insert(ProfileVo vo) {
-		return sqlSession.insert(NAMESPACE + ".insert", vo);
+	public int insert(ProfileVo profileVo) {
+		return sqlSession.insert(NAMESPACE + ".insert", profileVo);
 	}
 	
 	public ProfileVo getInfo(String id) {
 		return sqlSession.selectOne(NAMESPACE + ".getInfo", id);
 	}
 	
-	public int update(ProfileVo vo) {
-		return sqlSession.update(NAMESPACE + ".update", vo);
+	public int update(ProfileVo profileVo) {
+		return sqlSession.update(NAMESPACE + ".update", profileVo);
 	}
 }

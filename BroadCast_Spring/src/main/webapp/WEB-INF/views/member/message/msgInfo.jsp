@@ -29,16 +29,16 @@ table th{
 
 	<table border="1" style="margin: auto;">
 		<tr>
-			<th>貰った人</th><td>${vo.rid }</td>
+			<th>貰った人</th><td>${messageVo.rid }</td>
 		</tr>
 		<tr>
-			<th>送った人</th><td>${vo.sid }</td>
+			<th>送った人</th><td>${messageVo.sid }</td>
 		</tr>
 		<tr>
-			<th>日付</th><td>${vo.regdate }</td>
+			<th>日付</th><td>${messageVo.regdate }</td>
 		</tr>
 		<tr>
-			<th>内容</th><td><textarea rows="12" cols="40" name="content" readonly="readonly">${vo.content }</textarea></td>
+			<th>内容</th><td><textarea rows="12" cols="40" name="content" readonly="readonly">${messageVo.content }</textarea></td>
 		</tr>		
 	</table>
 	

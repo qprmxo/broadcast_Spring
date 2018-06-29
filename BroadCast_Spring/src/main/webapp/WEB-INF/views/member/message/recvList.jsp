@@ -36,8 +36,8 @@
 	
 	<br><br>
 	
-	<a href="msgSend" onclick="window.open(this.href, '', 'width=500, height=600'); return false;">
-		<button type="button" class="w3-button w3-teal w3-round-large" style="margin-left: 440px;">作成</button>
+	<a href="msgSend" onclick="window.open(this.href, '', 'width=500, height=600'); return false;" style="margin-left: 440px;">
+		<button type="button" class="w3-button w3-teal w3-round-large">作成</button>
 	</a>
 	<button type="button" id="btnDelete" class="w3-button w3-teal w3-round-large">削除</button>
 	
@@ -53,26 +53,26 @@
 			<th style="width:300px;">内容</th>
 			<th style="width:100px;">日付</th>
 		</tr>
-		<c:if test="${empty list }">
+		<c:if test="${empty messageList }">
 			<tr>
 				<td colspan="5">メッセージがありません。</td>
 			</tr>
 		</c:if>
-		<c:forEach var="vo" items="${list }">
+		<c:forEach var="messageVo" items="${messageList }">
 			<tr>
-				<td><input type="checkbox" name="chk" value="${vo.msg_num }" class="chk"></td>
+				<td><input type="checkbox" name="chk" value="${messageVo.msg_num }" class="chk"></td>
 				<c:choose>
-					<c:when test="${vo.read_check == 0 }">
+					<c:when test="${messageVo.read_check == 0 }">
 						<td><i class="fa fa-envelope"></i></td>
 					</c:when>
 					<c:otherwise>
 						<td><i class="fa fa-envelope-open-o"></i></td>
 					</c:otherwise>
 				</c:choose>
-				<td>${vo.sid }</td>
-				<td><a href="msgInfo?msg_num=${vo.msg_num }&cmd=read" 
-						onclick="window.open(this.href, '', 'width=500, height=600'); return false;">${vo.content }</a></td>
-				<td>${vo.regdate }</td>
+				<td>${messageVo.sid }</td>
+				<td><a href="msgInfo?msg_num=${messageVo.msg_num }&cmd=read" 
+						onclick="window.open(this.href, '', 'width=500, height=600'); return false;">${messageVo.content }</a></td>
+				<td>${messageVo.regdate }</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -90,9 +90,12 @@
 				<a href="#" class="w3-bar-item w3-button w3-hover-black">前へ</a>
 			</c:otherwise>
 		</c:choose>
-			<c:if test="${empty list }">
+		
+		<c:choose>
+			<c:when test="${empty messageList }">
 				<a href="#" class="w3-bar-item w3-button w3-hover-black"><span style="color:red">1</span></a>
-			</c:if>
+			</c:when>
+			<c:otherwise>
 			<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
 				<c:choose>
 					<c:when test="${i==pu.pageNum }">
@@ -103,6 +106,9 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		
 		<c:choose>
 			<c:when test="${pu.endPageNum<pu.totalPageCount }">
 				<a href="recvList?pageNum=${pu.endPageNum+1 }'/>" class="w3-bar-item w3-button w3-hover-black">次へ</a>

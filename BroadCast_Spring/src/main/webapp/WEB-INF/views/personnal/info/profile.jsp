@@ -30,7 +30,7 @@
 	<form action="<c:url value='/${sessionScope.id }/setting/update'/>" method="post" id="frm" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<th>タイトル</th><td><input type="text" name="title" value="${vo.title }"></td>
+				<th>タイトル</th><td><input type="text" name="title" value="${profileVo.title }"></td>
 			</tr>
 			<tr>
 				<th>プロフィール写真</th>
@@ -40,5 +40,5 @@
 		</table>
 	</form>
 	
-	<button type="button" id="btnSubmit">設定</button>
+	<button type="button" id="btnSubmit" class="w3-button w3-teal w3-round-large" style="margin-left:250px;">設定</button>
 </div>

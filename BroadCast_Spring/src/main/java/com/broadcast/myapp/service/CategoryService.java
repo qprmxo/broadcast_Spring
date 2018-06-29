@@ -14,13 +14,19 @@ public class CategoryService {
 	@Autowired
 	private CategoryDao categoryDao;
 	
-	public int insert(CategoryVo vo) {
-		return categoryDao.insert(vo);
+	public int insert(CategoryVo categoryVo) {
+		return categoryDao.insert(categoryVo);
 	}
 	public int delete(int category_num) {
 		return categoryDao.delete(category_num);
 	}
-	public List<CategoryVo> getInfo(String id) {
-		return categoryDao.getInfo(id);
+	public List<CategoryVo> getList(String id) {
+		return categoryDao.getList(id);
+	}
+	public int getNumber(CategoryVo categoryVo) {
+		return categoryDao.getNumber(categoryVo);
+	}
+	public int updateIndex(CategoryVo categoryVo) {
+		return categoryDao.updateIndex(categoryVo);
 	}
 }

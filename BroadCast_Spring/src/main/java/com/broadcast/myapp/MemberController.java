@@ -38,11 +38,11 @@ public class MemberController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String personnal(@PathVariable(value="id") String id, Model model) {
-		ProfileVo profile_vo = profileService.getInfo(id);
-		List<CategoryVo> category_list = categoryService.getInfo(id);
+		ProfileVo profileVo = profileService.getInfo(id);
+		List<CategoryVo> categoryList = categoryService.getList(id);
 		model.addAttribute("id", id);
-		model.addAttribute("profile_vo", profile_vo);
-		model.addAttribute("category_list", category_list);
+		model.addAttribute("profileVo", profileVo);
+		model.addAttribute("categoryList", categoryList);
 		
 		return ".personnal";
 	}
@@ -112,9 +112,9 @@ public class MemberController {
 	public String memberInfo(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("id");
-		MemberVo vo = memberService.getInfo(id);
+		MemberVo memberVo = memberService.getInfo(id);
 		
-		model.addAttribute("vo", vo);
+		model.addAttribute("memberVo", memberVo);
 		
 		return ".member.join.update";
 	}

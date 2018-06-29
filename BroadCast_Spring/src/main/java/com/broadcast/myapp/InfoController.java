@@ -31,42 +31,55 @@ public class InfoController {
 
 	@RequestMapping(value = "/{id}/setting", method = RequestMethod.GET)
 	public String info(@PathVariable(value="id") String id, Model model) {
-		ProfileVo profile_vo = profileService.getInfo(id);
-		List<CategoryVo> category_list = categoryService.getInfo(id);
+		ProfileVo profileVo = profileService.getInfo(id);
+		List<CategoryVo> categoryList = categoryService.getList(id);
 		
 		model.addAttribute("id", id);
-		model.addAttribute("category_list", category_list);
-		model.addAttribute("profile_vo", profile_vo);
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("profileVo", profileVo);
 		
 		return ".personnal.info.profile";
 	}
 	
 	@RequestMapping(value = "/{id}/category", method = RequestMethod.GET)
 	public String category(@PathVariable(value="id") String id, Model model) {
-		ProfileVo profile_vo = profileService.getInfo(id);
-		List<CategoryVo> category_list = categoryService.getInfo(id);
+		ProfileVo profileVo = profileService.getInfo(id);
+		List<CategoryVo> categoryList = categoryService.getList(id);
 		
 		model.addAttribute("id", id);
-		model.addAttribute("profile_vo", profile_vo);
-		model.addAttribute("category_list", category_list);
+		model.addAttribute("profileVo", profileVo);
+		model.addAttribute("categoryList", categoryList);
 		return ".personnal.info.category";
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value = "/{id}/category/insert", method = RequestMethod.POST)
-	public String categoryInsert(@PathVariable(value="id") String id, String name, Model model) {
-		int n = categoryService.insert(new CategoryVo(name, id));
+	@ResponseBody
+	public int categoryInsert(@PathVariable(value="id") String id, String name, int index_num, Model model) {
+		int n = categoryService.insert(new CategoryVo(name, id, index_num));
 		if(n>0) {
-			return "true";
+			int category_num = categoryService.getNumber(new CategoryVo(name, id));
+			return category_num;
 		}else {
-			return "false";
+			return 0;
 		}
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/{id}/category/delete", method = RequestMethod.POST)
-	public String categoryDelete(int category_num, Model model) {
+	public int categoryDelete(int category_num, Model model) {
 		int n = categoryService.delete(category_num);
+		if(n>0) {
+			return category_num;
+		}else {
+			return 0;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/{id}/category/confirm", method = RequestMethod.POST)
+	public String categoryConfirm(int category_num, int index_num) {
+		int n = categoryService.updateIndex(new CategoryVo(category_num, index_num));
 		if(n>0) {
 			return "true";
 		}else {
@@ -76,18 +89,18 @@ public class InfoController {
 	
 	@RequestMapping(value = "/{id}/setting/update", method = RequestMethod.POST)
 	public String infoUpdate(@PathVariable(value="id") String id, String title, MultipartFile imgfile, Model model, HttpSession session) {
-		ProfileVo vo = profileService.getInfo(id);
+		ProfileVo profileVo = profileService.getInfo(id);
 		
 		String path = session.getServletContext().getRealPath("/resources/image");
 		String orgfilename = imgfile.getOriginalFilename();
 		String savefilename = UUID.randomUUID() + "_" + orgfilename;
 		
 		if(orgfilename == null || orgfilename.equals("")) {
-			orgfilename = vo.getOrg_filename();
-			savefilename = vo.getSave_filename();
+			orgfilename = profileVo.getOrg_filename();
+			savefilename = profileVo.getSave_filename();
 		}else {
 			try {
-				new File(path + "//" + vo.getSave_filename()).delete();
+				new File(path + "//" + profileVo.getSave_filename()).delete();
 				FileCopyUtils.copy(imgfile.getInputStream(), new FileOutputStream(path + "//" + savefilename));
 				System.out.println(path + "//" + savefilename + "upload!!");
 			}catch(IOException e) {

@@ -5,7 +5,7 @@
 <!-- Header -->
 
 <div class="w3-left w3-padding-8" style="margin-left:40px;">
-	<a href="<c:url value='/main'/>"><h5>SpringKadai_BroadCast</h5></a>
+	<a href="<c:url value='/main'/>"><h5>SpringKadai BroadCast</h5></a>
 </div>
 	
 <div class="w3-right" style="margin-top:5px;margin-right:150px;">

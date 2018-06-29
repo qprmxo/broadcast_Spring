@@ -5,15 +5,19 @@
 <mapper namespace="sqlmap.CategoryMapper">
 	
 	<insert id="insert" parameterType="category">
-		insert into category values(seq_category_num.nextval,#{name},#{id})
+		insert into category values(seq_category_num.nextval,#{name},#{id},#{index_num})
 	</insert>
-	
 	<delete id="delete" parameterType="int">
 		delete from category where category_num=#{category_num}
 	</delete>
-		
-	<select id="getInfo" parameterType="string" resultType="category">
-		select * from category where id=#{id}
+	<select id="getList" parameterType="string" resultType="category">
+		select * from category where id=#{id} order by index_num asc
 	</select>
+	<select id="getNumber" parameterType="category" resultType="int">
+		select category_num from category where id=#{id} and name=#{name}
+	</select>
+	<update id="updateIndex" parameterType="category">
+		update category set index_num=#{index_num} where category_num=#{category_num}
+	</update>
 	
 </mapper>

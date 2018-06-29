@@ -32,8 +32,8 @@ public class MessageService {
 	}
 	
 	
-	public int sendMsg(MessageVo vo) {
-		return messageDao.msgSend(vo);
+	public int sendMsg(MessageVo messageVo) {
+		return messageDao.msgSend(messageVo);
 	}
 	public int msgRecvDelete(int msg_num) {
 		return messageDao.msgRecvDelete(msg_num);

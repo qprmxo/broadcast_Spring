@@ -13,11 +13,11 @@ public class MemberService {
 	private MemberDao memberDao;
 	
 	public boolean login(String id, String pwd) {
-		MemberVo vo = memberDao.getInfo(id);
-		if(vo == null) {
+		MemberVo memberVo = memberDao.getInfo(id);
+		if(memberVo == null) {
 			return false;
 		}else {
-			if(vo.getPwd().equals(pwd)) {
+			if(memberVo.getPwd().equals(pwd)) {
 				return true;
 			}else {
 				return false;
@@ -26,23 +26,23 @@ public class MemberService {
 	}
 	
 	public boolean idCheck(String id) {
-		MemberVo vo = memberDao.getInfo(id);
-		if(vo == null) {
+		MemberVo memberVo = memberDao.getInfo(id);
+		if(memberVo == null) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
-	public int insert(MemberVo vo) {
-		return memberDao.insert(vo);
+	public int insert(MemberVo memberVo) {
+		return memberDao.insert(memberVo);
 	}
 	
 	public MemberVo getInfo(String id) {
 		return memberDao.getInfo(id);
 	}
 	
-	public int update(MemberVo vo) {
-		return memberDao.update(vo);
+	public int update(MemberVo memberVo) {
+		return memberDao.update(memberVo);
 	}
 }
